@@ -1,0 +1,42 @@
+﻿@model Usuario
+@{
+    ViewData["Title"] = "Minha Conta";
+}
+
+<div class="display">
+    <h1>Bem-vindo(a) a sua área @Model.Nome @Model.Sobrenome!</h1>
+    <p>Username: @Model.Username</p>
+    <p>Email: @Model.Email</p>
+    <p>Idade: @Model.Idade</p>
+
+    <h3>Cursos que você está matrículado:</h3>
+    @if(Model.Cursos.Count == 0)
+    {
+        <p>Você não está matriculado(a) em nenhum curso!</p>
+    }
+    @if(Model.Cursos.Count != 0)
+    {
+        <div class="cursos-matriculados">
+        @foreach(var curso in Model.Cursos)
+        {
+            <div>
+                <p>@curso.CapaUrl</p>
+                <p>@curso.Criador @curso.DuracaoEmMinutos min</p>
+            </div>
+        }
+        </div>
+    }
+</div>
+
+<style>
+    .display {
+        text-align: center;
+    }
+
+    .cursos-matriculados {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: start;
+    }
+</style>

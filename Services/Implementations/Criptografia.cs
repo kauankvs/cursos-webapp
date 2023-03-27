@@ -12,14 +12,14 @@ namespace CursosWebApp.Services.Implementations
 
         public string TransformarSenhaEmHash(string senha)
         {
-            var senhaHash = BCrypt.Net.BCrypt.EnhancedHashPassword(senha);
+            var senhaHash = BCrypt.Net.BCrypt.HashPassword(senha);
             return senhaHash;
         }
 
-        public async Task<bool> VerificarValidadeDaSenha(string username, string senha)
+        public async Task<bool> VerificarValidadeDaSenha(string email, string senha)
         {
-            Usuario usuario = await _context.Usuarios.AsNoTracking().FirstOrDefaultAsync(user => user.Username == username);
-            var senhaValida = BCrypt.Net.BCrypt.EnhancedVerify(senha, usuario.Senha);
+            Usuario usuario = await _context.Usuarios.AsNoTracking().FirstOrDefaultAsync(user => user.Email == email);
+            var senhaValida = BCrypt.Net.BCrypt.Verify(senha, usuario.Senha);
             return senhaValida;
         }
     }

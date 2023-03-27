@@ -1,5 +1,7 @@
 using CursosWebApp;
 using CursosWebApp.Models;
+using CursosWebApp.Services.Implementations;
+using CursosWebApp.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -9,6 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<CursosWebAppContext>();
+builder.Services.AddTransient<ITokenService, TokenService>();
+builder.Services.AddTransient<ICriptografia, Criptografia>();
+builder.Services.AddTransient<IUsuarioService, UsuarioService>();
 
 builder.Services.AddAuthentication(options =>
 {
@@ -48,6 +53,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=home}/{action=index}/{id?}");
 
 app.Run();

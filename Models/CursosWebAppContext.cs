@@ -68,7 +68,7 @@ public partial class CursosWebAppContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false);
             entity.Property(e => e.Senha)
-                .HasMaxLength(1)
+                .HasMaxLength(500)
                 .IsUnicode(false);
             entity.Property(e => e.Sobrenome)
                 .HasMaxLength(255)
