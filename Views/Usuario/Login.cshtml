@@ -5,30 +5,16 @@
 }
 
 <div class="formulario">
-<h1>Login</h1>
-
-<form asp-action="Login" method="post">
-    <div class="form-group linha-form">
-        <label asp-for="Email" for="email">Email</label>
-        <input asp-for="Email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email" required>
-    </div>
-
-     <div class="form-group linha-form">
-            <label asp-for="Senha" for="senha">Senha</label>
+    <h1>Login</h1>
+    <form asp-action="Login" method="post">
+        <div class="form-group linha-form">
+            <label for="email">Email</label>
+            <input asp-for="Email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email" required>
+        </div>
+        <div class="form-group linha-form">
+            <label for="senha">Senha</label>
             <input asp-for="Senha" type="password" class="form-control" id="senha" placeholder="Senha" required>
-      </div>
-      <button type="submit" class="linha-form btn btn-dark">Fazer Login</button>
-</form>
-
+        </div>
+        <button type="submit" class="linha-form btn btn-dark">Fazer Login</button>
+    </form>
 </div>
-
-<style>
-    .linha-form {
-        margin-top: 15px;
-        margin-bottom: 15px;
-    }
-
-    .formulario {
-        margin: 40px 75px;
-    }
-</style>

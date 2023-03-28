@@ -49,6 +49,7 @@ namespace CursosWebApp.Controllers
                 HttpOnly = true,
                 Secure = true,
             };
+            ViewData["UsuarioLogado"] = true;
             Response.Cookies.Append("User", loginInput.Email, options);
             return Redirect("/");
         }
@@ -65,6 +66,13 @@ namespace CursosWebApp.Controllers
                 return NotFound();
 
             return View(usuario); 
+        }
+
+        public IActionResult Logout()
+        {
+            ViewData["UsuarioLogado"] = false;
+            Response.Cookies.Delete("User");
+            return Redirect("/");
         }
     }
 }
