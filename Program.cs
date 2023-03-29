@@ -2,7 +2,8 @@ using CursosWebApp;
 using CursosWebApp.Models;
 using CursosWebApp.Services.Implementations;
 using CursosWebApp.Services.Interfaces;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -15,23 +16,14 @@ builder.Services.AddTransient<ITokenService, TokenService>();
 builder.Services.AddTransient<ICriptografia, Criptografia>();
 builder.Services.AddTransient<IUsuarioService, UsuarioService>();
 
-builder.Services.AddAuthentication(options =>
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
 {
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(options =>
-{
-    options.RequireHttpsMetadata = false;
-    options.SaveToken = true;
-    options.TokenValidationParameters = new TokenValidationParameters()
-    {
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuracoes.Segredo)),
-        ValidateIssuerSigningKey = true,
-        ValidateIssuer = false,
-        ValidateAudience = false,
-    };
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
 });
+
 
 var app = builder.Build();
 
@@ -43,6 +35,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseCookiePolicy();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -50,6 +43,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

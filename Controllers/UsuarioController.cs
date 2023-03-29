@@ -1,5 +1,6 @@
 ﻿using CursosWebApp.Models;
 using CursosWebApp.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CursosWebApp.Controllers
@@ -39,29 +40,27 @@ namespace CursosWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginDTO loginInput)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             bool loginValido = await _usuarioService.ValidarLoginAsync(loginInput);
             if (loginValido == false)
                 return BadRequest();
 
-            CookieOptions options = new CookieOptions()
-            {
-                Expires = DateTime.UtcNow.AddHours(8),
-                HttpOnly = true,
-                Secure = true,
-            };
-            ViewData["UsuarioLogado"] = true;
-            Response.Cookies.Append("User", loginInput.Email, options);
+            HttpContext.Session.SetString("Usuario", loginInput.Email);
             return Redirect("/");
         }
 
         [HttpGet]
         public async Task<IActionResult> ContaDeUsuario()
         {
-            string? cookieUsuario = Request.Cookies["User"];
-            if(cookieUsuario == null)
+            string? userEmail = HttpContext.Session.GetString("Usuario");
+            if (userEmail == null)
                 return Unauthorized();
 
-            Usuario? usuario = await _usuarioService.ReceberUsuarioAsync(cookieUsuario);
+
+            Usuario? usuario = await _usuarioService.ReceberUsuarioAsync(userEmail);
             if(usuario == null)
                 return NotFound();
 
@@ -70,8 +69,7 @@ namespace CursosWebApp.Controllers
 
         public IActionResult Logout()
         {
-            ViewData["UsuarioLogado"] = false;
-            Response.Cookies.Delete("User");
+            HttpContext.Session.Clear();
             return Redirect("/");
         }
     }
