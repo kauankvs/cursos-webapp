@@ -1,11 +1,8 @@
-using CursosWebApp;
 using CursosWebApp.Models;
 using CursosWebApp.Services.Implementations;
 using CursosWebApp.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,14 +13,21 @@ builder.Services.AddTransient<ITokenService, TokenService>();
 builder.Services.AddTransient<ICriptografia, Criptografia>();
 builder.Services.AddTransient<IUsuarioService, UsuarioService>();
 
-builder.Services.AddDistributedMemoryCache();
-builder.Services.AddSession(options =>
-{
-    options.IdleTimeout = TimeSpan.FromMinutes(30);
-    options.Cookie.HttpOnly = true;
-    options.Cookie.IsEssential = true;
-});
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Usuario/Login";
+        options.LogoutPath = "/Usuario/Logout";
+        options.ExpireTimeSpan = TimeSpan.FromHours(1);
+        options.AccessDeniedPath= "/Usuario/Login";
+        options.Cookie.SameSite = SameSiteMode.Strict;
+    });
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Aluno", policy => policy.RequireClaim(ClaimTypes.Role, "Aluno"));
+    options.AddPolicy("Professor", policy => policy.RequireClaim(ClaimTypes.Role, "Professor"));
+});
 
 var app = builder.Build();
 
@@ -43,8 +47,6 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

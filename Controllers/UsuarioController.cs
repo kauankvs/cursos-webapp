@@ -1,7 +1,10 @@
 ﻿using CursosWebApp.Models;
 using CursosWebApp.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace CursosWebApp.Controllers
 {
@@ -12,12 +15,14 @@ namespace CursosWebApp.Controllers
             => _usuarioService = usuarioService;
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Registrar()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Registrar(UsuarioDTO usuarioInput)
         {
             if (!ModelState.IsValid)
@@ -32,30 +37,40 @@ namespace CursosWebApp.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public  IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(LoginDTO loginInput)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
+
             bool loginValido = await _usuarioService.ValidarLoginAsync(loginInput);
             if (loginValido == false)
                 return BadRequest();
 
-            HttpContext.Session.SetString("Usuario", loginInput.Email);
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Email, loginInput.Email),
+                new Claim(ClaimTypes.Role, "Aluno")
+            };
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
             return Redirect("/");
         }
 
         [HttpGet]
+        [Authorize(Policy = "Aluno")]
         public async Task<IActionResult> ContaDeUsuario()
         {
-            string? userEmail = HttpContext.Session.GetString("Usuario");
+            string? userEmail = HttpContext.User.FindFirstValue(ClaimTypes.Email);
             if (userEmail == null)
                 return Unauthorized();
 
@@ -67,9 +82,10 @@ namespace CursosWebApp.Controllers
             return View(usuario); 
         }
 
-        public IActionResult Logout()
+        [Authorize]
+        public async Task<IActionResult> Logout()
         {
-            HttpContext.Session.Clear();
+            await HttpContext.SignOutAsync();
             return Redirect("/");
         }
     }
