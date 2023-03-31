@@ -52,7 +52,7 @@ namespace CursosWebApp.Controllers
                 return BadRequest();
             }
 
-            Usuario? usuario = await _usuarioService.ValidarLoginAsync(loginInput);
+            Usuario? usuario = await _usuarioService.ValidarLoginDeUsuarioAsync(loginInput);
             if (usuario == null)
                 return BadRequest();
 
@@ -68,7 +68,7 @@ namespace CursosWebApp.Controllers
         }
 
         [HttpGet]
-        [Authorize(Policy = "Aluno, Tutor")]
+        [Authorize(Policy = "Aluno")]
         public async Task<IActionResult> ContaDeUsuario()
         {
             string? userEmail = HttpContext.User.FindFirstValue(ClaimTypes.Email);

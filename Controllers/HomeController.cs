@@ -1,6 +1,7 @@
 ﻿using CursosWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace CursosWebApp.Controllers
 {
@@ -15,6 +16,12 @@ namespace CursosWebApp.Controllers
 
         public IActionResult Index()
         {
+            bool usuarioLogado = false;
+            string? userEmail = HttpContext.User.FindFirstValue(ClaimTypes.Email);
+            if (userEmail != null)
+                usuarioLogado = true;
+
+            ViewBag.UsuarioLogado = usuarioLogado;
             return View();
         }
 

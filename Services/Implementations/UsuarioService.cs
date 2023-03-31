@@ -35,7 +35,7 @@ namespace CursosWebApp.Services.Implementations
             return usuario;
         }
 
-        public async Task<Usuario> ValidarLoginAsync(LoginDTO loginInput)
+        public async Task<Usuario> ValidarLoginDeUsuarioAsync(LoginDTO loginInput)
         {
             bool senhaValida = await _criptografia.VerificarValidadeDaSenha(loginInput.Email, loginInput.Senha);
             if (senhaValida == false)
