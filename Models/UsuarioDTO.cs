@@ -23,5 +23,9 @@ namespace CursosWebApp.Models
 
         [Required]
         public int Idade { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        public string Papel { get; set; } = null!;
     }
 }

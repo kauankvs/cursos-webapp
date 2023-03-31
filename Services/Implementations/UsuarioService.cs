@@ -19,7 +19,6 @@ namespace CursosWebApp.Services.Implementations
 
         public async Task<Usuario> CriarUsuarioAsync(UsuarioDTO usuarioInput)
         {
-            string papelPadrao = "Aluno";
             string senhaHash = _criptografia.TransformarSenhaEmHash(usuarioInput.Senha);
             Usuario usuario = new Usuario
             {
@@ -29,20 +28,21 @@ namespace CursosWebApp.Services.Implementations
                 Email = usuarioInput.Email,
                 Senha = senhaHash,
                 Idade = usuarioInput.Idade,
-                Papel = papelPadrao,
+                Papel = usuarioInput.Papel,
             };
             await _context.Usuarios.AddAsync(usuario);
             await _context.SaveChangesAsync();
             return usuario;
         }
 
-        public async Task<bool> ValidarLoginAsync(LoginDTO loginInput)
+        public async Task<Usuario> ValidarLoginAsync(LoginDTO loginInput)
         {
             bool senhaValida = await _criptografia.VerificarValidadeDaSenha(loginInput.Email, loginInput.Senha);
             if (senhaValida == false)
-                return false;
+                return null;
 
-            return true;
+            Usuario usuario = await _context.Usuarios.AsNoTracking().FirstOrDefaultAsync(u => u.Email == loginInput.Email);
+            return usuario;
         }
 
         public async Task<Usuario> ReceberUsuarioAsync(string email)

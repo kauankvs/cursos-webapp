@@ -9,7 +9,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<CursosWebAppContext>();
-builder.Services.AddTransient<ITokenService, TokenService>();
 builder.Services.AddTransient<ICriptografia, Criptografia>();
 builder.Services.AddTransient<IUsuarioService, UsuarioService>();
 
@@ -26,7 +25,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("Aluno", policy => policy.RequireClaim(ClaimTypes.Role, "Aluno"));
-    options.AddPolicy("Professor", policy => policy.RequireClaim(ClaimTypes.Role, "Professor"));
+    options.AddPolicy("Tutor", policy => policy.RequireClaim(ClaimTypes.Role, "Tutor"));
 });
 
 var app = builder.Build();

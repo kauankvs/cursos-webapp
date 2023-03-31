@@ -52,28 +52,28 @@ namespace CursosWebApp.Controllers
                 return BadRequest();
             }
 
-            bool loginValido = await _usuarioService.ValidarLoginAsync(loginInput);
-            if (loginValido == false)
+            Usuario? usuario = await _usuarioService.ValidarLoginAsync(loginInput);
+            if (usuario == null)
                 return BadRequest();
 
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Email, loginInput.Email),
-                new Claim(ClaimTypes.Role, "Aluno")
+                new Claim(ClaimTypes.Email, usuario.Email),
+                new Claim(ClaimTypes.Role, usuario.Papel)
             };
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
             return Redirect("/");
+            
         }
 
         [HttpGet]
-        [Authorize(Policy = "Aluno")]
+        [Authorize(Policy = "Aluno, Tutor")]
         public async Task<IActionResult> ContaDeUsuario()
         {
             string? userEmail = HttpContext.User.FindFirstValue(ClaimTypes.Email);
             if (userEmail == null)
                 return Unauthorized();
-
 
             Usuario? usuario = await _usuarioService.ReceberUsuarioAsync(userEmail);
             if(usuario == null)

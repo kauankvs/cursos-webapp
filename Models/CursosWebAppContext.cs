@@ -44,20 +44,19 @@ public partial class CursosWebAppContext : DbContext
             entity.HasOne(d => d.Criador).WithMany(p => p.Cursos)
                 .HasForeignKey(d => d.CriadorId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Curso__CriadorId__3C69FB99");
+                .HasConstraintName("FK__Curso__CriadorId__4BAC3F29");
         });
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Usuario__3214EC076B0D753D");
+            entity.HasKey(e => e.Id).HasName("PK__Usuario__3214EC07D0234AC2");
 
             entity.ToTable("Usuario");
 
-            entity.HasIndex(e => e.Username, "UQ__Usuario__536C85E4ED526343").IsUnique();
+            entity.HasIndex(e => e.Username, "UQ__Usuario__536C85E4C49833F6").IsUnique();
 
-            entity.HasIndex(e => e.Email, "UQ__Usuario__A9D105345039D3CA").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__Usuario__A9D10534621A4076").IsUnique();
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.Email)
                 .HasMaxLength(255)
                 .IsUnicode(false);
@@ -65,16 +64,16 @@ public partial class CursosWebAppContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false);
             entity.Property(e => e.Papel)
-                .HasMaxLength(255)
+                .HasMaxLength(10)
                 .IsUnicode(false);
             entity.Property(e => e.Senha)
-                .HasMaxLength(500)
+                .HasMaxLength(255)
                 .IsUnicode(false);
             entity.Property(e => e.Sobrenome)
                 .HasMaxLength(255)
                 .IsUnicode(false);
             entity.Property(e => e.Username)
-                .HasMaxLength(30)
+                .HasMaxLength(50)
                 .IsUnicode(false);
         });
 
