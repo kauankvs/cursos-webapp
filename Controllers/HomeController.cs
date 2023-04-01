@@ -1,9 +1,9 @@
-﻿using CursosWebApp.Models;
+﻿using Mawe.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Security.Claims;
 
-namespace CursosWebApp.Controllers
+namespace Mawe.Controllers
 {
     public class HomeController : Controller
     {

@@ -1,12 +1,12 @@
-﻿using CursosWebApp.Models;
-using CursosWebApp.Services.Interfaces;
+﻿using Mawe.Models;
+using Mawe.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace CursosWebApp.Controllers
+namespace Mawe.Controllers
 {
     public class UsuarioController : Controller
     {

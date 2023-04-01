@@ -3,16 +3,16 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CursosWebApp</title>
+    <title>@ViewData["Title"] - Mawé</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/CursosWebApp.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Mawe.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Cursos App</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Mawé</a>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
@@ -42,7 +42,7 @@
         </nav>
     </header>
 
-    <div class="container">
+    <div class="container conteudo">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -50,9 +50,10 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - Cursos App - <a asp-controller="Home" asp-action="Privacy">Privacidade</a>
+            &copy; 2023 - Mawe - <a asp-controller="Home" asp-action="Privacy">Privacidade</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

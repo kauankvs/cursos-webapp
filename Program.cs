@@ -1,6 +1,6 @@
-using CursosWebApp.Models;
-using CursosWebApp.Services.Implementations;
-using CursosWebApp.Services.Interfaces;
+
+using Mawe.Services.Implementations;
+using Mawe.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
 

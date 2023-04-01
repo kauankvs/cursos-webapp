@@ -1,4 +1,4 @@
-namespace CursosWebApp.Models
+namespace Mawe.Models
 {
     public class ErrorViewModel
     {

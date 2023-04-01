@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "CursosWebApp": {
+    "Mawe": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

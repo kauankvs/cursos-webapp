@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CursosWebApp.Models;
+namespace Mawe.Models;
 
 public partial class Curso
 {

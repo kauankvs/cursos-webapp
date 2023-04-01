@@ -1,4 +1,4 @@
-﻿namespace CursosWebApp.Services.Interfaces
+﻿namespace Mawe.Services.Interfaces
 {
     public interface ICriptografia
     {

@@ -1,8 +1,8 @@
-﻿using CursosWebApp.Models;
-using CursosWebApp.Services.Interfaces;
+﻿using Mawe.Models;
+using Mawe.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace CursosWebApp.Services.Implementations
+namespace Mawe.Services.Implementations
 {
     public class Criptografia : ICriptografia
     {

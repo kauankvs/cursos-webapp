@@ -1,6 +1,6 @@
-﻿using CursosWebApp.Models;
+﻿using Mawe.Models;
 
-namespace CursosWebApp.Services.Interfaces
+namespace Mawe.Services.Interfaces
 {
     public interface IUsuariosCollectionService
     {

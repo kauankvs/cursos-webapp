@@ -1,7 +1,7 @@
-﻿using CursosWebApp.Models;
+﻿using Mawe.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CursosWebApp.Services.Interfaces
+namespace Mawe.Services.Interfaces
 {
     public interface IUsuarioService
     {

@@ -1,11 +1,11 @@
 ﻿using Azure;
-using CursosWebApp.Models;
-using CursosWebApp.Services.Interfaces;
+using Mawe.Models;
+using Mawe.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 
-namespace CursosWebApp.Services.Implementations
+namespace Mawe.Services.Implementations
 {
     public class UsuarioService : IUsuarioService
     {
