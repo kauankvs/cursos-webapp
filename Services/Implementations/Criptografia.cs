@@ -6,8 +6,8 @@ namespace CursosWebApp.Services.Implementations
 {
     public class Criptografia : ICriptografia
     {
-        private readonly CursosWebAppContext _context;
-        public Criptografia(CursosWebAppContext context)
+        private readonly IUsuariosCollectionService _context;
+        public Criptografia(IUsuariosCollectionService context)
             => _context = context;
 
         public string TransformarSenhaEmHash(string senha)
@@ -18,7 +18,7 @@ namespace CursosWebApp.Services.Implementations
 
         public async Task<bool> VerificarValidadeDaSenha(string email, string senha)
         {
-            Usuario usuario = await _context.Usuarios.AsNoTracking().FirstOrDefaultAsync(user => user.Email == email);
+            Usuario usuario = await _context.SelecionarUsuarioPorEmailAsync(email);
             var senhaValida = BCrypt.Net.BCrypt.Verify(senha, usuario.Senha);
             return senhaValida;
         }

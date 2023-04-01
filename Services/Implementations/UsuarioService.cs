@@ -9,9 +9,9 @@ namespace CursosWebApp.Services.Implementations
 {
     public class UsuarioService : IUsuarioService
     {
-        private readonly CursosWebAppContext _context;
+        private readonly IUsuariosCollectionService _context;
         private readonly ICriptografia _criptografia;
-        public UsuarioService(CursosWebAppContext context, ICriptografia criptografia)
+        public UsuarioService(IUsuariosCollectionService context, ICriptografia criptografia)
         {
             _context = context;
             _criptografia = criptografia;
@@ -30,8 +30,7 @@ namespace CursosWebApp.Services.Implementations
                 Idade = usuarioInput.Idade,
                 Papel = usuarioInput.Papel,
             };
-            await _context.Usuarios.AddAsync(usuario);
-            await _context.SaveChangesAsync();
+            await _context.AdicionarUsuarioAsync(usuario);
             return usuario;
         }
 
@@ -41,13 +40,13 @@ namespace CursosWebApp.Services.Implementations
             if (senhaValida == false)
                 return null;
 
-            Usuario usuario = await _context.Usuarios.AsNoTracking().FirstOrDefaultAsync(u => u.Email == loginInput.Email);
+            Usuario usuario = await _context.SelecionarUsuarioPorEmailAsync(loginInput.Email);
             return usuario;
         }
 
         public async Task<Usuario> ReceberUsuarioAsync(string email)
         {
-            Usuario? usuario = await _context.Usuarios.FirstOrDefaultAsync(user => user.Email == email);
+            Usuario? usuario = await _context.SelecionarUsuarioPorEmailAsync(email);
             if (usuario == null)
                 return null;
 
