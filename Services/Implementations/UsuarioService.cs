@@ -27,7 +27,7 @@ namespace Mawe.Services.Implementations
                 Username = usuarioInput.Username,
                 Email = usuarioInput.Email,
                 Senha = senhaHash,
-                Idade = usuarioInput.Idade,
+                Nascimento = usuarioInput.Nascimento,
                 Papel = usuarioInput.Papel,
             };
             await _context.AdicionarUsuarioAsync(usuario);

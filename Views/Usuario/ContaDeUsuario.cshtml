@@ -7,7 +7,7 @@
     <h1>Bem-vindo(a) a sua área @Model.Nome @Model.Sobrenome!</h1>
     <p>Username: @Model.Username</p>
     <p>Email: @Model.Email</p>
-    <p>Idade: @Model.Idade</p>
+    <p>Idade: @Model.Nascimento.ToString("dd/MM/yyyy")</p>
 
     <h3>Cursos que você está matrículado:</h3>
     @if(Model.Cursos.Count == 0)
@@ -20,7 +20,7 @@
         @foreach(var curso in Model.Cursos)
         {
             <div>
-                
+                <p>@curso</p>
             </div>
         }
         </div>

@@ -5,12 +5,15 @@ namespace Mawe.Models
     public class UsuarioDTO
     {
         [Required]
+        [MaxLength(30)]
         public string Username { get; set; } = null!;
 
         [Required]
+        [MaxLength(255)]
         public string Nome { get; set; } = null!;
 
         [Required]
+        [MaxLength(255)]
         public string Sobrenome { get; set; } = null!;
 
         [Required]
@@ -22,7 +25,8 @@ namespace Mawe.Models
         public string Senha { get; set; } = null!;
 
         [Required]
-        public int Idade { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime Nascimento { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
