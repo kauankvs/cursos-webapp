@@ -68,7 +68,7 @@ namespace Mawe.Controllers
         }
 
         [HttpGet]
-        [Authorize(Policy = "Aluno")]
+        [Authorize]
         public async Task<IActionResult> ContaDeUsuario()
         {
             string? userEmail = HttpContext.User.FindFirstValue(ClaimTypes.Email);
@@ -76,10 +76,14 @@ namespace Mawe.Controllers
                 return Unauthorized();
 
             Usuario? usuario = await _usuarioService.ReceberUsuarioAsync(userEmail);
-            if(usuario == null)
-                return NotFound();
 
-            return View(usuario); 
+            if(usuario.Papel == "Aluno")
+                return View("ContaDeAluno", usuario);
+
+            if (usuario.Papel == "Tutor")
+                return View("ContaDeTutor", usuario);
+
+            return NotFound();
         }
 
         [Authorize]
