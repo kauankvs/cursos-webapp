@@ -41,7 +41,7 @@ namespace Mawe.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public  IActionResult Login()
+        public IActionResult Login()
         {
             bool userNotLogged = HttpContext.User.FindFirstValue(ClaimTypes.Email).IsNullOrEmpty();
             ViewBag.UsuarioLogado = !userNotLogged;

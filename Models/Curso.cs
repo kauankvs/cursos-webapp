@@ -11,7 +11,7 @@ public class Curso
     public string Id { get; set; }
 
     [BsonElement("nome")]
-    public int Nome { get; set; }
+    public string Nome { get; set; }
 
     [BsonElement("duracaoEmMinutos")]
     public int DuracaoEmMinutos { get; set; }

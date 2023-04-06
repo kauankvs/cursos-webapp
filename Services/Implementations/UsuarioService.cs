@@ -34,7 +34,7 @@ namespace Mawe.Services.Implementations
                 usuario.CursosMatriculados = new List<int>();
 
             if (usuarioInput.Papel == "Tutor")
-                usuario.CursosMatriculados = new List<int>();
+                usuario.CursosLecionados = new List<Curso>();
 
             await _context.AdicionarUsuarioAsync(usuario);
             return usuario;

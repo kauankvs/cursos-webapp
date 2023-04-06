@@ -11,6 +11,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<ICriptografia, Criptografia>();
 builder.Services.AddTransient<IUsuarioService, UsuarioService>();
 builder.Services.AddTransient<IUsuariosCollectionService, UsuariosCollectionService>();
+builder.Services.AddTransient<ICursoService, CursoService>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
