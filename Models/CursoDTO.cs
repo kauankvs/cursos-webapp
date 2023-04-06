@@ -8,7 +8,7 @@ public class CursoDTO
 {
     [Required]
     [DataType(DataType.Text)]
-    public int Name { get; set; }
+    public int Nome { get; set; }
 
     [Required]
     [DataType(DataType.Time)]

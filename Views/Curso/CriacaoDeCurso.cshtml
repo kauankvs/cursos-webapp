@@ -5,4 +5,35 @@
 
 <div class="formulario">
     <h1>Crie seu curso</h1>
+
+    <form method="post">
+
+        <div class="form-group linha-form">
+            <label asp-for="Nome" for="nome">Nome</label>
+            <input asp-for="Nome" type="text" id="nome" class="form-control" placeholder="Nome" required>
+        </div>
+
+        <div class="form-group linha-form">
+            <label asp-for="Descricao" for="descricao">Sobrenome</label>
+            <textarea asp-for="Descricao" rows="4" id="descricao" class="form-control" required>Descrição</textarea>>
+        </div>
+
+        <div class="form-group linha-form col-4">
+            <label asp-for="DuracaoEmMinutos" for="duracao">Duração Em Minutos</label>
+            <input asp-for="DuracaoEmMinutos" type="time" class="form-control" id="duracao" placeholder="Duração" required>
+        </div>
+
+        <div class="form-group linha-form col-4">
+            <label asp-for="Preco" for="preco">Duração Em Minutos</label>
+            <input asp-for="Preco" type="number" class="form-control" id="preco" placeholder="Preço" required>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="CapaUrl" for="capaUrl">Capa Para o Curso</label>
+            <input asp-for="CapaUrl" type="url" class="form-control-file" id="capaUrl">
+        </div>
+
+        <button type="submit" class="linha-form btn btn-dark">Criar curso</button>
+    </form>
+
 </div>
