@@ -31,6 +31,9 @@ public class Usuario
     [BsonElement("papel")]
     public string Papel { get; set; } = null!;
 
-    [BsonElement("cursos")]
-    public List<int>? Cursos { get; set; } = new List<int>();
+    [BsonElement("cursosMatriculados")]
+    public List<int>? CursosMatriculados { get; set; }
+
+    [BsonElement("cursosLecionados")]
+    public List<Curso>? CursosLecionados { get; set; }
 }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Mawe.Controllers
 {
@@ -18,6 +19,8 @@ namespace Mawe.Controllers
         [AllowAnonymous]
         public IActionResult Registrar()
         {
+            bool userNotLogged = HttpContext.User.FindFirstValue(ClaimTypes.Email).IsNullOrEmpty();
+            ViewBag.UsuarioLogado = !userNotLogged;
             return View();
         }
 
@@ -40,6 +43,8 @@ namespace Mawe.Controllers
         [AllowAnonymous]
         public  IActionResult Login()
         {
+            bool userNotLogged = HttpContext.User.FindFirstValue(ClaimTypes.Email).IsNullOrEmpty();
+            ViewBag.UsuarioLogado = !userNotLogged;
             return View();
         }
 
@@ -73,9 +78,13 @@ namespace Mawe.Controllers
         {
             string? userEmail = HttpContext.User.FindFirstValue(ClaimTypes.Email);
             if (userEmail == null)
+            {
+                ViewBag.UsuarioLogado = false;
                 return Unauthorized();
+            }
 
             Usuario? usuario = await _usuarioService.ReceberUsuarioAsync(userEmail);
+            ViewBag.UsuarioLogado = true;
 
             if(usuario.Papel == "Aluno")
                 return View("ContaDeAluno", usuario);

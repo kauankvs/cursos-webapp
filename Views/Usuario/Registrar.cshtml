@@ -3,18 +3,6 @@
     ViewData["Title"] = "Criar conta";
 }
 
-<script defer>
-    function mostrarSenha() {
-    var x = document.getElementById("senha");
-    if (x.type === "password") {
-        x.type = "text";
-    }
-    else {
-        x.type = "password";
-    }
-}
-</script>
-
 <div class="formulario">
     <h1>Crie Sua Conta</h1>
 
@@ -62,4 +50,17 @@
         </div>
         <button type="submit" class="linha-form btn btn-dark">Criar conta</button>
     </form>
+    <div class="redirecionar-div">
+        <a class="redirecionar-link" asp-controller="Usuario" asp-action="Login">Já tenho conta.</a>
+    </div>
 </div>
+
+<script defer>
+    function mostrarSenha() {
+    var x = document.getElementById("senha");
+    if (x.type === "password")
+        x.type = "text";
+    else 
+        x.type = "password";
+    }
+</script>

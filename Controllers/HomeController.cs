@@ -1,5 +1,6 @@
 ﻿using Mawe.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using System.Diagnostics;
 using System.Security.Claims;
 
@@ -16,12 +17,8 @@ namespace Mawe.Controllers
 
         public IActionResult Index()
         {
-            bool usuarioLogado = false;
-            string? userEmail = HttpContext.User.FindFirstValue(ClaimTypes.Email);
-            if (userEmail != null)
-                usuarioLogado = true;
-
-            ViewBag.UsuarioLogado = usuarioLogado;
+            bool userNotLogged = HttpContext.User.FindFirstValue(ClaimTypes.Email).IsNullOrEmpty();
+            ViewBag.UsuarioLogado = !userNotLogged;
             return View();
         }
 

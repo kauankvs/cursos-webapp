@@ -1,21 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 
 namespace Mawe.Models;
 
-public partial class Curso
+public class Curso
 {
+    [BsonElement("id")]
     public int Id { get; set; }
 
-    public int CriadorId { get; set; }
-
+    [BsonElement("duracaoEmMinutos")]
     public int DuracaoEmMinutos { get; set; }
 
+    [BsonElement("descricao")]
     public string Descricao { get; set; } = null!;
 
-    public string? CapaUrl { get; set; }
+    [BsonElement("capaUrl")]
+    public string CapaUrl { get; set; } = null!;
 
+    [BsonElement("preco")]
+    public double Preco { get; set; }
+
+    [BsonElement("dataDeCriacao")]
     public DateTime DataDeCriacao { get; set; }
 
-    public virtual Usuario Criador { get; set; } = null!;
 }

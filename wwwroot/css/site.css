@@ -28,5 +28,17 @@ footer {
 }
 
 .formulario {
-    margin: 40px 75px;
+    margin: 15px 75px;
+}
+
+.redirecionar-div {
+    text-align: center;
+}
+
+.redirecionar-link {
+    color: black;
+}
+
+.redirecionar-link: hover {
+    color: dimgray
 }

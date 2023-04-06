@@ -30,6 +30,12 @@ namespace Mawe.Services.Implementations
                 Nascimento = usuarioInput.Nascimento,
                 Papel = usuarioInput.Papel,
             };
+            if (usuarioInput.Papel == "Aluno")
+                usuario.CursosMatriculados = new List<int>();
+
+            if (usuarioInput.Papel == "Tutor")
+                usuario.CursosMatriculados = new List<int>();
+
             await _context.AdicionarUsuarioAsync(usuario);
             return usuario;
         }
