@@ -1,12 +1,17 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using System;
 
 namespace Mawe.Models;
 
 public class Curso
 {
-    [BsonElement("id")]
-    public int Id { get; set; }
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string Id { get; set; }
+
+    [BsonElement("nome")]
+    public int Nome { get; set; }
 
     [BsonElement("duracaoEmMinutos")]
     public int DuracaoEmMinutos { get; set; }
