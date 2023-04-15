@@ -28,4 +28,7 @@ public class Curso
     [BsonElement("dataDeCriacao")]
     public DateTime DataDeCriacao { get; set; }
 
+    [BsonElement("categoria")]
+    public Categorias Categoria { get; set; }
+
 }

@@ -28,6 +28,17 @@
             <input asp-for="Preco" type="number" class="form-control" id="preco" placeholder="Preço" required>
         </div>
 
+        <div class="form-group col-md-4 linha-form">
+            <label for="inputPapel">Categoria</label>
+            <select asp-for="Categoria" id="inputCategoria" class="form-control" required>
+                <option value="" selected>Escolha um...</option>
+                @foreach (var categoria in Enum.GetValues(typeof(Categorias)))
+                {
+                    <option value="@categoria">@categoria</option>
+                }
+            </select>
+        </div>
+
         <div class="form-group custom-file linha-form">
             <label asp-for="CapaUrl" for="capa">Capa do Curso</label>
             <input asp-for="CapaUrl" type="url" class="form-control custom-file-input"id="capa">

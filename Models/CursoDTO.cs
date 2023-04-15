@@ -31,4 +31,7 @@ public class CursoDTO
     [DataType(DataType.Date)]
     public DateTime DataDeCriacao { get; set; }
 
+    [Required]
+    public Categorias Categoria { get; set; } 
+
 }

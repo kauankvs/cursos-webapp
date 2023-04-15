@@ -25,6 +25,7 @@ namespace Mawe.Services.Implementations
                 DataDeCriacao = DateTime.UtcNow,
                 CapaUrl= cursoInput.CapaUrl,
                 DuracaoEmMinutos = cursoInput.DuracaoEmMinutos,
+                Categoria = cursoInput.Categoria,
             };
             await _context.AdicionarCursoAsync(email, curso);
             return curso;
