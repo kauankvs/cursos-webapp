@@ -9,7 +9,9 @@ namespace Mawe.Services.Implementations
         private IMongoCollection<Usuario> _collection;
         public UsuariosCollectionService()
         {
-            var client = new MongoClient("mongodb://localhost:27017");
+            var settings = MongoClientSettings.FromConnectionString(Configuracoes.MongoConnection);
+            settings.ServerApi = new ServerApi(ServerApiVersion.V1);
+            var client = new MongoClient(settings);
             var database = client.GetDatabase("mawe");
             _collection = database.GetCollection<Usuario>("usuarios");
         }
