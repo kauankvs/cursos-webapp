@@ -1,0 +1,48 @@
+.nav-conteudo {
+    display: flex;
+    padding: 15px;
+}
+
+.link-nav {
+    color: lightgray;
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+    letter-spacing: 0.05em;
+}
+
+.link-nav:link {
+    text-decoration: none;
+    color: dimgrey;
+}
+
+.link-nav:visited, .link-nav:active {
+    text-decoration: none;
+}
+
+.link-nav:hover {
+    text-decoration: none;
+    color: grey
+}
+
+.conteudo-footer {
+    color: lightgray;
+}
+
+.titulo-nav {
+    align-self: center;
+    justify-self: center;
+    place-self: center;
+    padding-right: 30px;
+}
+
+.titulo:link {
+    text-decoration: none;
+    color: dimgrey;
+}
+
+.titulo:hover {
+    color: grey;
+}
+
+

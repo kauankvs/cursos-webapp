@@ -6,41 +6,37 @@
     <title>@ViewData["Title"] - Mawé</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/nav.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Mawe.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Mawé</a>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        @if (ViewBag.UsuarioLogado == false)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Registrar">Criar Conta</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Login">Login</a>
-                            </li>
-                        }
-                        @if (ViewBag.UsuarioLogado == true)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="ContaDeUsuario">Conta</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Logout">Logout</a>
-                            </li>
-                        }
-                    </ul>
-                </div>
+    <div class="collapse" id="navbarToggleExternalContent">
+        <div class="bg-dark p-4 nav-conteudo">
+            <div class="titulo-nav">
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="text-white titulo h3">Mawé</a>
             </div>
-        </nav>
-    </header>
+            <div>
+                <h5 class="text-white h4">Conta</h5>
+                @if (ViewBag.UsuarioLogado == false)
+                {
+                    <a class="link-nav" asp-area="" asp-controller="Usuario" asp-action="Registrar">Criar Conta</a>
+                    <a class="link-nav" asp-area="" asp-controller="Usuario" asp-action="Login">Login</a>
+                }
+                @if (ViewBag.UsuarioLogado == true)
+                {
+                    <a class="link-nav" asp-area="" asp-controller="Usuario" asp-action="ContaDeUsuario">Conta</a>
+                    <a class="link-nav" asp-area="" asp-controller="Usuario" asp-action="Logout">Logout</a>
+                }
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
 
     <div class="container conteudo">
         <main role="main" class="pb-3">
@@ -48,9 +44,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - Mawe - <a asp-controller="Home" asp-action="Privacy">Privacidade</a>
+    <footer class="border-top footer text-muted bg-dark">
+        <div class="container conteudo-footer">
+            &copy; 2023 - Mawe - <a class="link-nav" style="display:inline" asp-controller="Home" asp-action="Privacy">Privacidade</a>
         </div>
     </footer>
 
