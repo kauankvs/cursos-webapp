@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="~/Mawe.styles.css" asp-append-version="true" />
 </head>
 <body>
+    <div class="barra-nav">
     <div class="collapse" id="navbarToggleExternalContent">
         <div class="bg-dark p-4 nav-conteudo">
             <div class="titulo-nav">
@@ -36,7 +37,8 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
-    </nav>
+        </nav>
+    </div>
 
     <div class="container conteudo">
         <main role="main" class="pb-3">
@@ -46,7 +48,7 @@
 
     <footer class="border-top footer text-muted bg-dark">
         <div class="container conteudo-footer">
-            &copy; 2023 - Mawe - <a class="link-nav" style="display:inline" asp-controller="Home" asp-action="Privacy">Privacidade</a>
+            &copy; 2023 - Mawe - <a class="footer-priv" style="display:inline" asp-controller="Home" asp-action="Privacy">Privacidade</a>
         </div>
     </footer>
 

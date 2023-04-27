@@ -1,5 +1,6 @@
 .nav-conteudo {
     display: flex;
+    flex-wrap: wrap;
     padding: 15px;
 }
 
@@ -33,7 +34,7 @@
     align-self: center;
     justify-self: center;
     place-self: center;
-    padding-right: 30px;
+    padding-right: 2%;
 }
 
 .titulo:link {
@@ -42,7 +43,19 @@
 }
 
 .titulo:hover {
-    color: grey;
+    color: dimgrey;
 }
 
+.footer-priv {
+    color: lightgray;
+    text-decoration: none;
+}
+
+.footer-priv:hover {
+    color: gray;
+}
+
+.barra-nav {
+    margin-bottom: 2%;
+}
 

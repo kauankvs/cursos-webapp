@@ -85,14 +85,7 @@ namespace Mawe.Controllers
 
             Usuario? usuario = await _usuarioService.ReceberUsuarioAsync(userEmail);
             ViewBag.UsuarioLogado = true;
-
-            if(usuario.Papel == "Aluno")
-                return View("ContaDeAluno", usuario);
-
-            if (usuario.Papel == "Tutor")
-                return View("ContaDeTutor", usuario);
-
-            return NotFound();
+            return View("ContaDeUsuario", usuario);
         }
 
         [Authorize]
