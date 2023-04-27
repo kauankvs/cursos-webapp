@@ -5,7 +5,7 @@
 
 <div class="display">
     <div class="texto-center">
-        <h1 class="display-4">Bem-vindo(a) a sua área @Model.Nome</h1>
+        <h1 class="display-3">Bem-vindo(a) a sua área @Model.Nome</h1>
     </div>
     <div class="user-info">
         <h4>Informações do Usuário</h4>
@@ -17,24 +17,44 @@
     @if(Model.CursosLecionados != null)
     {
         <div class="texto-center">
-            <h3 class="display-5">Cursos que você leciona:</h3>
+            <h3 class="display-4">Cursos que você leciona:</h3>
         </div>
-        <a asp-controller="Curso" asp-action="CriacaoDeCurso" class="btn btn-outline-success btn-lg">Criar Curso</a>
+        @if(Model.CursosLecionados.Count == 0)
+        {
+            <div class="texto-center">
+                <h6 class="display-6">Você não leciona nenhum curso!</h6>
+                <a asp-controller="Curso" asp-action="CriacaoDeCurso" class="btn btn-outline-success btn-lg">Criar Curso</a>
+            </div>
+        }
+        @if(Model.CursosLecionados.Count != 0)
+        {
+            <div class="cursos-matriculados">
+                @foreach (var curso in Model.CursosLecionados)
+                {
+                    <div>
+                        <p>@curso</p>
+                    </div>
+                }
+            </div>
+            <a asp-controller="Curso" asp-action="CriacaoDeCurso" class="btn btn-outline-success btn-lg">Criar Curso</a>
+        }
     }
 
     @if(Model.CursosMatriculados != null)
     {
         <div class="texto-center">
-            <h3 class="display-5">Cursos que você se matriculou:</h3>
+            <h3 class="display-4">Cursos que você se matriculou:</h3>
         </div>
-        @if (Model.CursosMatriculados.Count == 0)
+        @if(Model.CursosMatriculados.Count == 0)
         {
-            <p>Você não está matriculado(a) em nenhum curso!</p>
+            <div class="texto-center">
+                <h6 class="display-6">Você não está matriculado(a) em nenhum curso!</h6>
+            </div>
         }
-        @if (Model.CursosMatriculados.Count != 0)
+        @if(Model.CursosMatriculados.Count != 0)
         {
             <div class="cursos-matriculados">
-                @foreach (var curso in Model.CursosMatriculados)
+                @foreach(var curso in Model.CursosMatriculados)
                 {
                     <div>
                         <p>@curso</p>
