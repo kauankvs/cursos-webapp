@@ -32,7 +32,7 @@ namespace Mawe.Services.Implementations
 
         public async Task<List<Curso>> SelecionarTodosCursosAsync()
         {
-            List<Usuario> usuarios = await _collection.Find(u => u.CursosLecionados.IsNullOrEmpty() == false).ToListAsync();
+            List<Usuario> usuarios = await _collection.Find(u => u.CursosLecionados != null).ToListAsync();
             List<Curso> cursos = new List<Curso>();
             foreach (var usuario in usuarios)
                 foreach (var curso in usuario.CursosLecionados)
