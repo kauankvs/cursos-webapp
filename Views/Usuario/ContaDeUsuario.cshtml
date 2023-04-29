@@ -36,7 +36,9 @@
                     </div>
                 }
             </div>
-            <a asp-controller="Curso" asp-action="CriacaoDeCurso" class="btn btn-outline-success btn-lg bot-criar-curso">Criar Curso</a>
+            <div class="div-botao-cursos-lecionados">
+                <a asp-controller="Curso" asp-action="CriacaoDeCurso" class="btn btn-outline-success btn-lg bot-criar-curso">Criar Curso</a>
+            </div>
         }
     }
 
@@ -95,6 +97,12 @@
         text-align: center;
     }
 
+    .div-botao-cursos-lecionados {
+        text-align: center;
+        height: fit-content;
+        margin: 2% 0;
+    }
+
     .user-info {
         margin: 4% 0px;
         font-family: Arial, Helvetica, sans-serif;
@@ -110,7 +118,4 @@
         justify-content: start;
     }
 
-    .bot-criar-curso {
-        margin: 3% 0px;
-    }
 </style>
