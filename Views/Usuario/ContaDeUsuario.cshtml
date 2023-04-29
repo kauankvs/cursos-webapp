@@ -23,20 +23,20 @@
         {
             <div class="texto-center">
                 <h6 class="display-6">Você não leciona nenhum curso!</h6>
-                <a asp-controller="Curso" asp-action="CriacaoDeCurso" class="btn btn-outline-success btn-lg">Criar Curso</a>
+                <a asp-controller="Curso" asp-action="CriacaoDeCurso" class="btn btn-outline-success btn-lg bot-criar-curso">Criar Curso</a>
             </div>
         }
-        @if(Model.CursosLecionados.Count != 0)
+        @if(Model.CursosLecionados.Count > 0)
         {
             <div class="cursos-matriculados">
                 @foreach (var curso in Model.CursosLecionados)
                 {
-                    <div>
-                        <p>@curso</p>
+                    <div class="curso-matriculado">
+                        <img class="curso-img" src=@curso.CapaUrl alt="Curso: @curso.Nome" >
                     </div>
                 }
             </div>
-            <a asp-controller="Curso" asp-action="CriacaoDeCurso" class="btn btn-outline-success btn-lg">Criar Curso</a>
+            <a asp-controller="Curso" asp-action="CriacaoDeCurso" class="btn btn-outline-success btn-lg bot-criar-curso">Criar Curso</a>
         }
     }
 
@@ -74,6 +74,23 @@
         justify-content: start;
     }
 
+    .curso-img {
+        max-width: 150px;
+        min-width: 50px;
+        height: auto;
+    }
+
+    .curso-matriculado {
+        padding: 1%;
+        border-radius: 5%;
+        background-color: lightgray;
+        margin-top: 1%;
+    }
+
+    .curso-matriculado:hover {
+        filter: brightness(0.9);
+    }
+
     .texto-center {
         text-align: center;
     }
@@ -91,5 +108,9 @@
         align-items: center;
         flex-wrap: wrap;
         justify-content: start;
+    }
+
+    .bot-criar-curso {
+        margin: 3% 0px;
     }
 </style>
