@@ -10,5 +10,6 @@ namespace Mawe.Services.Implementations
     public interface ICursoService
     {
         public Task<Curso> AdicionarCursoAsync(string email, CursoDTO cursoInput);
+        public Task<List<Curso>> SelecionarTodosCursosAsync();
     }
 }

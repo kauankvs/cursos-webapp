@@ -1,5 +1,6 @@
 ﻿using Mawe.Models;
 using Mawe.Services.Interfaces;
+using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
 
 namespace Mawe.Services.Implementations
@@ -27,6 +28,17 @@ namespace Mawe.Services.Implementations
             var filtro = Builders<Usuario>.Filter.Eq(e => e.Email, email);
             var update = Builders<Usuario>.Update.Push<Curso>(e => e.CursosLecionados, curso);
             await _collection.FindOneAndUpdateAsync(filtro, update);
+        }
+
+        public async Task<List<Curso>> SelecionarTodosCursosAsync()
+        {
+            List<Usuario> usuarios = await _collection.Find(u => u.CursosLecionados.IsNullOrEmpty() == false).ToListAsync();
+            List<Curso> cursos = new List<Curso>();
+            foreach (var usuario in usuarios)
+                foreach (var curso in usuario.CursosLecionados)
+                    cursos.Add(curso);
+          
+            return cursos;
         }
     }
 }

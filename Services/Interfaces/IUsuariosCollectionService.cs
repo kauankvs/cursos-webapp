@@ -7,5 +7,6 @@ namespace Mawe.Services.Interfaces
         public Task AdicionarUsuarioAsync(Usuario usuario);
         public Task<Usuario> SelecionarUsuarioPorEmailAsync(string email);
         public Task AdicionarCursoAsync(string email, Curso curso);
+        public Task<List<Curso>> SelecionarTodosCursosAsync();
     }
 }

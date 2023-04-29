@@ -10,10 +10,8 @@ namespace Mawe.Services.Implementations
     public class CursoService: ICursoService
     {
         private readonly IUsuariosCollectionService _context;
-        public CursoService(IUsuariosCollectionService context, ICriptografia criptografia)
-        {
-            _context = context;
-        }
+        public CursoService(IUsuariosCollectionService context)
+            => _context = context;
 
         public async Task<Curso> AdicionarCursoAsync(string email, CursoDTO cursoInput)
         {
@@ -30,5 +28,11 @@ namespace Mawe.Services.Implementations
             await _context.AdicionarCursoAsync(email, curso);
             return curso;
         }
+
+        public async Task<List<Curso>> SelecionarTodosCursosAsync()
+            => await _context.SelecionarTodosCursosAsync();
+        
+
+
     }
 }
