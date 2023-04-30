@@ -10,29 +10,35 @@
 
 <div class="categorias">
     <p class="lead categorias-titulo">Categorias</p>
-    @foreach (var categoria in Enum.GetNames(typeof(Categorias)))
+    @foreach (string categoriaHeader in Enum.GetNames(typeof(Categorias)))
     {
-        <p class="lead categoria-texto">@categoria</p>
+        <p onclick="rolarParaCategoria(@categoriaHeader)" class="lead categoria-texto">@categoriaHeader</p>
     }
 </div>
 
 
-@foreach (var categoria in Enum.GetNames(typeof(Categorias)))
+@foreach (string categoria in Enum.GetNames(typeof(Categorias)))
 {
     var cursosPorCategoria = Model.Where(c => c.Categoria.ToString() == categoria).ToList();
     if(cursosPorCategoria.Count > 0)
     {
-        <h6 class="display-6 categoria-curso-titulo">@categoria</h6>
+        <h6 id="@categoria" class="display-6 categoria-curso-titulo">@categoria</h6>
         <div class="cursos-homepage">
-            @foreach (var curso in cursosPorCategoria)
+            @foreach (Curso curso in cursosPorCategoria)
             {
                 <div class="curso-homepage">
-                    <img class="curso-img" src=@curso.CapaUrl alt="Curso: @curso.Nome">
+                    <img class="curso-img" src="@curso.CapaUrl" alt="Curso: @curso.Nome">
                 </div>
             }
         </div>
     }
 }
+
+<script>
+    function rolarParaCategoria(categoria) {
+        categoria.scrollIntoView();
+    }
+</script>
 
 <style>
     .cursos-homepage {
@@ -61,6 +67,7 @@
 
     .categoria-curso-titulo {
         margin-top: 3%;
+        margin-left: 0.5%;
     }
 
     .categorias {
@@ -72,6 +79,10 @@
     .categoria-texto {
         display: inline;
         margin: 0 1.5%;
+    }
+
+    .categoria-texto:hover {
+        color: lightgray;
     }
 
     .categorias-titulo {

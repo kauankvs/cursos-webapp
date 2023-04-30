@@ -28,6 +28,8 @@ namespace Mawe.Controllers
 
         public IActionResult Privacy()
         {
+            bool userNotLogged = HttpContext.User.FindFirstValue(ClaimTypes.Email).IsNullOrEmpty();
+            ViewBag.UsuarioLogado = !userNotLogged;
             return View();
         }
 
