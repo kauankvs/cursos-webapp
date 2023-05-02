@@ -34,5 +34,13 @@ namespace Mawe.Controllers
             await _service.AdicionarCursoAsync(userEmail, cursoInput);
             return Redirect("/");
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> TodosOsCursos()
+        {
+            List<Curso> cursos = await _service.SelecionarTodosCursosAsync();
+            return View(cursos);
+        }
     }
 }

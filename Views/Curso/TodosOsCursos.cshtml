@@ -1,48 +1,24 @@
 ﻿@model List<Curso>
 
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Cursos";
 }
 
 <div class="text-center">
-    <h1 class="display-3">Bem-vindo!</h1>
+    <h1 class="display-5">Cursos</h1>
 </div>
 
-<div class="categorias">
-    <p class="lead categorias-titulo">Categorias</p>
-    @foreach (string categoriaHeader in Enum.GetNames(typeof(Categorias)))
+<div class="container cursos-display">
+    @foreach (Curso curso in Model)
     {
-        <p onclick="rolarParaCategoria(@categoriaHeader)" class="lead categoria-texto">@categoriaHeader</p>
-    }
-</div>
-
-
-@foreach (string categoria in Enum.GetNames(typeof(Categorias)))
-{
-    var cursosPorCategoria = Model.Where(c => c.Categoria.ToString() == categoria).ToList();
-    if(cursosPorCategoria.Count > 0)
-    {
-        <h6 id="@categoria" class="display-6 categoria-curso-titulo">@categoria</h6>
-        <div class="cursos-homepage">
-            @foreach (Curso curso in cursosPorCategoria)
-            {
-                <div class="curso-homepage">
-                    <img class="curso-img" src="@curso.CapaUrl" alt="Curso: @curso.Nome">
-                </div>
-            }
+        <div class="curso-homepage">
+            <img class="curso-img" src="@curso.CapaUrl" alt="Curso: @curso.Nome">
         </div>
     }
-}
-
-<div class="margin-home-final">
-
 </div>
 
-<script>
-    function rolarParaCategoria(categoria) {
-        categoria.scrollIntoView();
-    }
-</script>
+<div class="margin-home-final">
+</div>
 
 <style>
     .cursos-homepage {
@@ -63,12 +39,14 @@
         padding: 1%;
         border-radius: 5%;
         background-color: lightgray;
-        margin-top: 1%;
+        margin: 1%;
+        width: fit-content;
     }
 
+        
     .curso-homepage:hover {
         filter: brightness(0.9);
-    }
+     }
 
     .categoria-curso-titulo {
         margin-top: 3%;
@@ -99,6 +77,12 @@
         height: 100px;
         width: 100%;
     }
+
+    .cursos-display {
+        display: flex;
+        flex-wrap: wrap;
+    }
 </style>
+
 
 
