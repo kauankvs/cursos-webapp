@@ -7,7 +7,10 @@
 <div class="categorias">
     @foreach (string categoria in Enum.GetNames(typeof(Categorias)))
     {
-        <a class="lead categoria-texto" href="/Curso/Categoria/@categoria">@categoria</a>
+        if(categoria != ViewData["Title"] as string)
+        {
+            <a class="lead categoria-texto" href="/Curso/Categoria/@categoria">@categoria</a>
+        }
     }
 </div>
 
