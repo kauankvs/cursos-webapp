@@ -24,7 +24,7 @@ namespace Mawe.Controllers
 
         [HttpPost]
         [Authorize(Policy = "Tutor")]
-        public async Task<IActionResult> CriacaoDeCurso(CursoDTO cursoInput)
+        public async Task<IActionResult> Criacao(CursoDTO cursoInput)
         {
             if (!ModelState.IsValid)
             {
@@ -37,10 +37,26 @@ namespace Mawe.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> TodosOsCursos()
+        public async Task<IActionResult> Cursos()
         {
             List<Curso> cursos = await _service.SelecionarTodosCursosAsync();
             return View(cursos);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("Curso/Categoria/{categoria}")]
+        public async Task<IActionResult> Categoria(string categoria)
+        {
+            List<Curso> cursoCategoria = new();
+            List<Curso> cursos = await _service.SelecionarTodosCursosAsync();
+            foreach(Curso curso in cursos) 
+            {
+                if (curso.Categoria.ToString() == categoria)
+                    cursoCategoria.Add(curso);
+            }
+            ViewData["Title"] = categoria;
+            return View(cursoCategoria);
         }
     }
 }
