@@ -13,32 +13,34 @@
     <div class="barra-nav">
     <div class="collapse" id="navbarToggleExternalContent">
         <div class="bg-dark nav-conteudo">
-
-            <div class="titulo-nav div-area-nav">
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="text-white titulo h3">Mawé</a>
+            <div class="div-nav-divisao">
+                <div class="titulo-nav div-area-nav">
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="text-white titulo h3">Mawé</a>
+                </div>
+                <div class="div-area-nav">
+                    <a class="link-nav" asp-controller="Curso" asp-action="Cursos">Cursos</a>
+                </div>
             </div>
-            <div class="div-area-nav">
-                <a class="link-nav" asp-controller="Curso" asp-action="Cursos">Cursos</a>
+            <div class="div-nav-divisao-conta">
+                @if (ViewBag.UsuarioLogado == false)
+                {
+                    <div class="div-area-nav">
+                        <a class="link-nav" asp-controller="Usuario" asp-action="Registrar">Criar Conta</a>
+                    </div>
+                    <div class="div-area-nav">
+                        <a class="link-nav" asp-controller="Usuario" asp-action="Login">Login</a>
+                    </div>
+                }
+                @if (ViewBag.UsuarioLogado == true)
+                {
+                    <div class="div-area-nav">
+                        <a class="link-nav" asp-controller="Usuario" asp-action="Conta">Conta</a>
+                    </div>
+                    <div class="div-area-nav">
+                        <a class="link-nav" asp-controller="Usuario" asp-action="Logout">Logout</a>
+                    </div>
+                }
             </div>
-
-            @if (ViewBag.UsuarioLogado == false)
-            {
-                <div class="div-area-nav">
-                    <a class="link-nav" asp-controller="Usuario" asp-action="Registrar">Criar Conta</a>
-                </div>
-                <div class="div-area-nav">
-                    <a class="link-nav" asp-controller="Usuario" asp-action="Login">Login</a>
-                </div>
-            }
-            @if (ViewBag.UsuarioLogado == true)
-            {
-                <div class="div-area-nav">
-                    <a class="link-nav" asp-controller="Usuario" asp-action="Conta">Conta</a>
-                </div>
-                <div class="div-area-nav">
-                    <a class="link-nav" asp-controller="Usuario" asp-action="Logout">Logout</a>
-                </div>
-            }
         </div>
     </div>
     <nav class="navbar navbar-dark bg-dark">

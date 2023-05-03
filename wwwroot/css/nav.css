@@ -1,12 +1,28 @@
 .nav-conteudo {
     display: flex;
     flex-wrap: wrap;
-    padding: 20px;
+    padding: 20px 20px 15px;
     align-items: center;
+    justify-content: space-between;
 }
 
 .div-area-nav {
-    margin: 0 1%;
+    margin: 0 2%;
+}
+
+.div-nav-divisao {
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.div-nav-divisao-conta {
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: end;
 }
 
 .link-nav {
@@ -39,6 +55,7 @@
     align-self: center;
     justify-self: center;
     place-self: center;
+    margin-bottom: 1%
 }
 
 .titulo:link {
