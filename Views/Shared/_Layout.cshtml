@@ -20,6 +20,17 @@
                 <div class="div-area-nav">
                     <a class="link-nav" asp-controller="Curso" asp-action="Cursos">Cursos</a>
                 </div>
+                <div class="div-area-nav">
+                <li class="nav-item dropdown">
+                    <a class="link-nav dropdown-toggle categorias-texto" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorias</a>
+                    <ul class="dropdown-menu">
+                        @foreach (string categoria in Enum.GetNames(typeof(Categorias)))
+                        {
+                            <li><a class="dropdown-item lead" href="/Curso/Categoria/@categoria">@categoria</a></li>
+                        }
+                    </ul>
+                </li>
+                </div>
             </div>
             <div class="div-nav-divisao-conta">
                 @if (ViewBag.UsuarioLogado == false)

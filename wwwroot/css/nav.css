@@ -80,4 +80,21 @@
     margin-bottom: 2%;
 }
 
+.categorias-texto {
+    text-decoration: none;
+    font-size: larger;
+    color: lightgray!important;
+    margin-bottom: 19%;
+}
+
+    .categorias-texto:hover {
+        text-decoration: none;
+        color: grey!important;
+    }
+
+    .categorias-texto:active .categorias-texto:link {
+        text-decoration: none;
+    }
+
+
 
