@@ -74,7 +74,7 @@ namespace Mawe.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> ContaDeUsuario()
+        public async Task<IActionResult> Conta()
         {
             string? userEmail = HttpContext.User.FindFirstValue(ClaimTypes.Email);
             if (userEmail == null)
@@ -85,7 +85,7 @@ namespace Mawe.Controllers
 
             Usuario? usuario = await _usuarioService.ReceberUsuarioAsync(userEmail);
             ViewBag.UsuarioLogado = true;
-            return View("ContaDeUsuario", usuario);
+            return View(usuario);
         }
 
         [Authorize]

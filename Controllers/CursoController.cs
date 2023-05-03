@@ -26,6 +26,8 @@ namespace Mawe.Controllers
         [Authorize(Policy = "Tutor")]
         public async Task<IActionResult> Criacao(CursoDTO cursoInput)
         {
+            bool userNotLogged = HttpContext.User.FindFirstValue(ClaimTypes.Email).IsNullOrEmpty();
+            ViewBag.UsuarioLogado = !userNotLogged;
             if (!ModelState.IsValid)
             {
                 return BadRequest();
@@ -39,6 +41,8 @@ namespace Mawe.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Cursos()
         {
+            bool userNotLogged = HttpContext.User.FindFirstValue(ClaimTypes.Email).IsNullOrEmpty();
+            ViewBag.UsuarioLogado = !userNotLogged;
             List<Curso> cursos = await _service.SelecionarTodosCursosAsync();
             return View(cursos);
         }
@@ -48,6 +52,8 @@ namespace Mawe.Controllers
         [Route("Curso/Categoria/{categoria}")]
         public async Task<IActionResult> Categoria(string categoria)
         {
+            bool userNotLogged = HttpContext.User.FindFirstValue(ClaimTypes.Email).IsNullOrEmpty();
+            ViewBag.UsuarioLogado = !userNotLogged;
             List<Curso> cursoCategoria = new();
             List<Curso> cursos = await _service.SelecionarTodosCursosAsync();
             foreach(Curso curso in cursos) 
