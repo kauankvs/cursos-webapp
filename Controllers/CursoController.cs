@@ -15,7 +15,7 @@ namespace Mawe.Controllers
 
         [HttpGet]
         [Authorize(Policy = "Tutor")]
-        public IActionResult CriacaoDeCurso()
+        public IActionResult Criacao()
         {
             bool userNotLogged = HttpContext.User.FindFirstValue(ClaimTypes.Email).IsNullOrEmpty();
             ViewBag.UsuarioLogado = !userNotLogged;

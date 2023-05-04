@@ -23,7 +23,7 @@
         {
             <div class="texto-center">
                 <h6 class="display-6">Você não leciona nenhum curso!</h6>
-                <a asp-controller="Curso" asp-action="CriacaoDeCurso" class="btn btn-outline-success btn-lg bot-criar-curso">Criar Curso</a>
+                <a asp-controller="Curso" asp-action="Criacao" class="btn btn-outline-success btn-lg bot-criar-curso">Criar Curso</a>
             </div>
         }
         @if(Model.CursosLecionados.Count > 0)
@@ -37,7 +37,7 @@
                 }
             </div>
             <div class="div-botao-cursos-lecionados">
-                <a asp-controller="Curso" asp-action="CriacaoDeCurso" class="btn btn-outline-success btn-lg bot-criar-curso">Criar Curso</a>
+                <a asp-controller="Curso" asp-action="Criacao" class="btn btn-outline-success btn-lg bot-criar-curso">Criar Curso</a>
             </div>
         }
     }

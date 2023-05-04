@@ -17,9 +17,6 @@
 <div class="container cursos-display">
     @foreach (Curso curso in Model)
     {
-        //<div class="curso-homepage">
-          //  <img class="curso-img" src="@curso.CapaUrl" alt="Curso: @curso.Nome">
-        //</div>
         <div class="card card-inteiro" style="width: 18rem;">
             <img src="@curso.CapaUrl" class="card-img-top curso-img" alt="@curso.Nome">
             <div class="card-body card-conteudo">
@@ -32,12 +29,6 @@
 </div>
 
 <style>
-    .cursos-homepage {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        justify-content: start;
-    }
 
     .curso-img {
         width: 100%;
