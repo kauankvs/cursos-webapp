@@ -1,7 +1,7 @@
 ﻿@model List<Curso>
 
 <div class="text-center">
-    <h1 class="display-4">@ViewData["Title"]</h1>
+    <h1 class="display-2">@ViewData["Title"]</h1>
 </div>
 
 <div class="categorias">
@@ -17,8 +17,16 @@
 <div class="container cursos-display">
     @foreach (Curso curso in Model)
     {
-        <div class="curso-homepage">
-            <img class="curso-img" src="@curso.CapaUrl" alt="Curso: @curso.Nome">
+        //<div class="curso-homepage">
+          //  <img class="curso-img" src="@curso.CapaUrl" alt="Curso: @curso.Nome">
+        //</div>
+        <div class="card card-inteiro" style="width: 18rem;">
+            <img src="@curso.CapaUrl" class="card-img-top curso-img" alt="@curso.Nome">
+            <div class="card-body card-conteudo">
+                <h5 class="card-title">@curso.Nome</h5>
+                <p class="card-text">@curso.DuracaoEmMinutos minutos</p>
+                <a href="#" class="btn btn-primary">Detalhes</a>
+            </div>
         </div>
     }
 </div>
@@ -32,10 +40,14 @@
     }
 
     .curso-img {
-        max-width: 150px;
-        min-width: 50px;
-        height: auto;
+        width: 100%;
+        max-height: 150px;
+        min-height: 40px;
         aspect-ratio: 2/1.5;
+    }
+
+    .card-inteiro {
+        margin: 1%;
     }
 
     .curso-homepage {

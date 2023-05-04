@@ -5,7 +5,7 @@
 }
 
 <div class="text-center">
-    <h1 class="display-3">Bem-vindo!</h1>
+    <h1 class="display-2">Bem-vindo!</h1>
 </div>
 
 <div class="categorias">
@@ -24,11 +24,22 @@
     {
         <h6 id="@categoria" class="display-6 categoria-curso-titulo">@categoria</h6>
         <div class="cursos-homepage">
-            @foreach (Curso curso in cursosPorCategoria)
-            {
-                <div class="curso-homepage">
-                    <img class="curso-img" src="@curso.CapaUrl" alt="Curso: @curso.Nome">
-                </div>
+            @{
+                int i = 0;
+                foreach (Curso curso in cursosPorCategoria)
+                {
+                    <div class="card card-inteiro" style="width: 18rem;">
+                        <img src="@curso.CapaUrl" class="card-img-top curso-img" alt="@curso.Nome">
+                        <div class="card-body card-conteudo">
+                            <h5 class="card-title">@curso.Nome</h5>
+                            <p class="card-text">@curso.DuracaoEmMinutos minutos</p>
+                            <a href="#" class="btn btn-primary">Detalhes</a>
+                        </div>
+                    </div>
+                    i++;
+                    if (i >= 5)
+                        break;
+            }
             }
         </div>
     }
@@ -48,15 +59,19 @@
     .cursos-homepage {
         display: flex;
         align-items: center;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         justify-content: start;
     }
 
     .curso-img {
-        max-width: 150px;
-        min-width: 50px;
-        height: auto;
+        width: 100%;
+        max-height: 150px;
+        min-height: 40px;
         aspect-ratio: 2/1.5;
+    }
+
+    .card-inteiro {
+        margin: 1%;
     }
 
     .curso-homepage {
