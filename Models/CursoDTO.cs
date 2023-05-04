@@ -8,6 +8,10 @@ public class CursoDTO
 {
     [Required]
     [DataType(DataType.Text)]
+    public string NomeUnico { get; set; }
+
+    [Required]
+    [DataType(DataType.Text)]
     public string Nome { get; set; }
 
     [Required]

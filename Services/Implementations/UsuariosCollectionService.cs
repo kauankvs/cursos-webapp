@@ -1,6 +1,7 @@
 ﻿using Mawe.Models;
 using Mawe.Services.Interfaces;
 using Microsoft.IdentityModel.Tokens;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Mawe.Services.Implementations
@@ -30,15 +31,17 @@ namespace Mawe.Services.Implementations
             await _collection.FindOneAndUpdateAsync(filtro, update);
         }
 
-        public async Task<List<Curso>> SelecionarTodosCursosAsync()
+        public async Task<List<Usuario>> SelecionarTodosUsuariosTutoresAsync()
         {
             List<Usuario> usuarios = await _collection.Find(u => u.CursosLecionados != null).ToListAsync();
-            List<Curso> cursos = new List<Curso>();
-            foreach (var usuario in usuarios)
-                foreach (var curso in usuario.CursosLecionados)
-                    cursos.Add(curso);
-          
-            return cursos;
+            return usuarios;
+        }
+
+        public async Task<Usuario> SelecionarUsuariosPorNomeDoCurso(string nomeUnico)
+        {
+            var filter = Builders<Usuario>.Filter.ElemMatch(u => u.CursosLecionados, c => c.NomeUnico == nomeUnico);
+            Usuario usuario = await _collection.Find(filter).FirstOrDefaultAsync();
+            return usuario;
         }
     }
 }

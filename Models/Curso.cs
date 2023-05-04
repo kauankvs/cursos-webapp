@@ -6,9 +6,8 @@ namespace Mawe.Models;
 
 public class Curso
 {
-    [BsonId]
-    [BsonRepresentation(BsonType.ObjectId)]
-    public string Id { get; set; }
+    [BsonElement("nomeUnico")]
+    public string NomeUnico { get; set; }
 
     [BsonElement("nome")]
     public string Nome { get; set; }
@@ -29,6 +28,6 @@ public class Curso
     public DateTime DataDeCriacao { get; set; }
 
     [BsonElement("categoria")]
-    public Categorias Categoria { get; set; }
+    public string Categoria { get; set; }
 
 }
