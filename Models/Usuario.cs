@@ -32,7 +32,7 @@ public class Usuario
     public string Papel { get; set; } = null!;
 
     [BsonElement("cursosMatriculados")]
-    public List<int> CursosMatriculados { get; set; } = new();
+    public List<string> CursosMatriculados { get; set; } = new();
 
     [BsonElement("cursosLecionados")]
     public List<Curso> CursosLecionados { get; set; } = new();
