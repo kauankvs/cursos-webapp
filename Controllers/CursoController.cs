@@ -33,7 +33,7 @@ namespace Mawe.Controllers
                 return BadRequest();
             };
             string userEmail = HttpContext.User.FindFirstValue(ClaimTypes.Email);
-            await _service.AdicionarCursoAsync(userEmail, cursoInput);
+            await _service.AdicionarCursoTutorAsync(userEmail, cursoInput);
             return Redirect("/");
         }
 
@@ -75,6 +75,21 @@ namespace Mawe.Controllers
                 return NotFound();
 
             return View(curso);
+        }
+
+        [HttpPost]
+        [Authorize(Policy = "Aluno")]
+        [Route("Curso/Inscrever/{nomeDoCurso}")]
+        public async Task<IActionResult> Inscrever(string nomeDoCurso)
+        {
+            string? userEmail = HttpContext.User.FindFirstValue(ClaimTypes.Email);
+            if (userEmail == null)
+            {
+                ViewBag.UsuarioLogado = false;
+                return Unauthorized();
+            }
+            await _service.AdicionarCursoAlunoAsync(userEmail, nomeDoCurso);
+            return View("Conta");
         }
     }
 }

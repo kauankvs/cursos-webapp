@@ -24,7 +24,7 @@ namespace Mawe.Services.Implementations
         public async Task<Usuario?> SelecionarUsuarioPorEmailAsync(string email)
             => await _collection.Find(u => u.Email == email).FirstOrDefaultAsync();
 
-        public async Task AdicionarCursoAsync(string email, Curso curso)
+        public async Task AdicionarCursoTutorAsync(string email, Curso curso)
         {
             var filtro = Builders<Usuario>.Filter.Eq(e => e.Email, email);
             var update = Builders<Usuario>.Update.Push<Curso>(e => e.CursosLecionados, curso);
@@ -45,6 +45,13 @@ namespace Mawe.Services.Implementations
                 return null;
 
             return usuario;
+        }
+
+        public async Task AdicionarCursoAlunoAsync(string email, string nomeDoCurso)
+        {
+            var filtro = Builders<Usuario>.Filter.Eq(e => e.Email, email);
+            var update = Builders<Usuario>.Update.Push<string>(e => e.CursosMatriculados, nomeDoCurso);
+            await _collection.FindOneAndUpdateAsync(filtro, update);
         }
     }
 }

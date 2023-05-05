@@ -7,7 +7,7 @@
         <p class="card-text texto-detalhe">@Model.Descricao</p> 
         <p class="card-text">Duração: @Model.DuracaoEmMinutos minutos</p>
         <p class="card-text">Valor: R$@Model.Preco</p>
-        <button type="button" class="btn btn-outline-success botao-inscrever">Inscreva-se</button>
+        <a href="/Curso/Inscrever/@Model.NomeUnico" class="btn btn-outline-success botao-inscrever">Inscreva-se</a>
         <p class="card-text"><small class="text-body-secondary">@Model.NomeUnico</small></p>
     </div>
 </div>

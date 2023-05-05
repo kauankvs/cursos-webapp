@@ -13,7 +13,7 @@ namespace Mawe.Services.Implementations
         public CursoService(IUsuariosCollectionService context)
             => _context = context;
 
-        public async Task<Curso> AdicionarCursoAsync(string email, CursoDTO cursoInput)
+        public async Task<Curso> AdicionarCursoTutorAsync(string email, CursoDTO cursoInput)
         {
             Curso curso = new()
             {
@@ -26,7 +26,7 @@ namespace Mawe.Services.Implementations
                 DuracaoEmMinutos = cursoInput.DuracaoEmMinutos,
                 Categoria = cursoInput.Categoria.ToString(),
             };
-            await _context.AdicionarCursoAsync(email, curso);
+            await _context.AdicionarCursoTutorAsync(email, curso);
             return curso;
         }
 
@@ -51,5 +51,8 @@ namespace Mawe.Services.Implementations
             return curso;
         }
 
+        public async Task AdicionarCursoAlunoAsync(string email, string nomeDoCurso)
+            => _context.AdicionarCursoAlunoAsync(email, nomeDoCurso);
+        
     }
 }
