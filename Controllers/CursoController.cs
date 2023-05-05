@@ -64,5 +64,17 @@ namespace Mawe.Controllers
             ViewData["Title"] = categoria;
             return View(cursoCategoria);
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("Curso/Detalhe/{nomeDoCurso}")]
+        public async Task<IActionResult> Detalhes(string nomeDoCurso)
+        {
+            Curso? curso = await _service.SelecionarCursoPorNomeAsync(nomeDoCurso);
+            if (curso == null)
+                return NotFound();
+
+            return View(curso);
+        }
     }
 }

@@ -14,7 +14,7 @@
         <p>Nascimento: @Model.Nascimento.ToString("dd/MM/yyyy")</p>
     </div>
     
-    @if(Model.CursosLecionados != null)
+    @if(Model.Papel == "Tutor")
     {
         <div class="texto-center">
             <h3 class="display-4">Cursos que você leciona:</h3>
@@ -42,7 +42,7 @@
         }
     }
 
-    @if(Model.CursosMatriculados != null)
+    @if(Model.Papel == "Aluno")
     {
         <div class="texto-center">
             <h3 class="display-4">Cursos que você se matriculou:</h3>

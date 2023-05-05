@@ -41,10 +41,13 @@ namespace Mawe.Services.Implementations
             return cursos;
         }
         
-        public async Task<Curso> SelecionarCursoPorNomeAsync(string nomeUnico)
+        public async Task<Curso>? SelecionarCursoPorNomeAsync(string nomeUnico)
         {
-            Usuario usuario = await _context.SelecionarUsuariosPorNomeDoCurso(nomeUnico);
-            Curso curso = usuario.CursosLecionados.FirstOrDefault(c => c.NomeUnico == nomeUnico);
+            Usuario? usuario = await _context.SelecionarUsuariosPorNomeDoCurso(nomeUnico);
+            if (usuario == null)
+                return null;
+
+            Curso curso = usuario.CursosLecionados.FirstOrDefault(c => c.NomeUnico.Equals(nomeUnico));
             return curso;
         }
 

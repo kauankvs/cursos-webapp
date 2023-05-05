@@ -37,10 +37,13 @@ namespace Mawe.Services.Implementations
             return usuarios;
         }
 
-        public async Task<Usuario> SelecionarUsuariosPorNomeDoCurso(string nomeUnico)
+        public async Task<Usuario>? SelecionarUsuariosPorNomeDoCurso(string nomeUnico)
         {
             var filter = Builders<Usuario>.Filter.ElemMatch(u => u.CursosLecionados, c => c.NomeUnico == nomeUnico);
-            Usuario usuario = await _collection.Find(filter).FirstOrDefaultAsync();
+            Usuario? usuario = await _collection.Find(filter).FirstOrDefaultAsync();
+            if (usuario == null)
+                return null;
+
             return usuario;
         }
     }
