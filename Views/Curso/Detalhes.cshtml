@@ -7,7 +7,10 @@
         <p class="card-text texto-detalhe">@Model.Descricao</p> 
         <p class="card-text">Duração: @Model.DuracaoEmMinutos minutos</p>
         <p class="card-text">Valor: R$@Model.Preco</p>
-        <a href="/Curso/Inscrever/@Model.NomeUnico" class="btn btn-outline-success botao-inscrever">Inscreva-se</a>
+        <form asp-action="Matricular" asp-controller="Curso" method="post">
+            <input asp-for="NomeUnico" class="input-curso"></input>
+            <button type="submit" class="btn btn-outline-success botao-inscrever">Matricule-se</button>
+        </form>
         <p class="card-text"><small class="text-body-secondary">@Model.NomeUnico</small></p>
     </div>
 </div>
@@ -34,5 +37,12 @@
 
     .titulo-detalhes {
         font-size: x-large;
+    }
+
+    .input-curso {
+        width: 0px;
+        height: 0px;
+        border: none;
+        padding: 0px;
     }
 </style>

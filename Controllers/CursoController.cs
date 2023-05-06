@@ -70,6 +70,8 @@ namespace Mawe.Controllers
         [Route("Curso/Detalhe/{nomeDoCurso}")]
         public async Task<IActionResult> Detalhes(string nomeDoCurso)
         {
+            bool userNotLogged = HttpContext.User.FindFirstValue(ClaimTypes.Email).IsNullOrEmpty();
+            ViewBag.UsuarioLogado = !userNotLogged;
             Curso? curso = await _service.SelecionarCursoPorNomeAsync(nomeDoCurso);
             if (curso == null)
                 return NotFound();
@@ -79,17 +81,17 @@ namespace Mawe.Controllers
 
         [HttpPost]
         [Authorize(Policy = "Aluno")]
-        [Route("Curso/Inscrever/{nomeDoCurso}")]
-        public async Task<IActionResult> Inscrever(string nomeDoCurso)
+        public async Task<IActionResult> Matricular(Curso curso)
         {
-            string? userEmail = HttpContext.User.FindFirstValue(ClaimTypes.Email);
-            if (userEmail == null)
+            string? email = HttpContext.User.FindFirstValue(ClaimTypes.Email);
+            if (email == null)
             {
                 ViewBag.UsuarioLogado = false;
                 return Unauthorized();
             }
-            await _service.AdicionarCursoAlunoAsync(userEmail, nomeDoCurso);
-            return View("Conta");
+            await _service.AdicionarCursoAlunoAsync(email, curso.NomeUnico);
+            return View("Index");
         }
+
     }
 }
