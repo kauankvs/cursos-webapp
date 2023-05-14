@@ -74,6 +74,21 @@ namespace Mawe.Controllers
 
         [HttpGet]
         [Authorize]
+        public async Task<IActionResult> Matriculados()
+        {
+            string? userEmail = HttpContext.User.FindFirstValue(ClaimTypes.Email);
+            if (userEmail == null)
+            {
+                ViewBag.UsuarioLogado = false;
+                return Unauthorized();
+            }
+            Usuario? usuario = await _usuarioService.ReceberUsuarioAsync(userEmail);
+            ViewBag.UsuarioLogado = true;
+            return View();
+        }
+
+        [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Conta()
         {
             string? userEmail = HttpContext.User.FindFirstValue(ClaimTypes.Email);

@@ -55,13 +55,8 @@
         }
         @if(Model.CursosMatriculados.Count != 0)
         {
-            <div class="cursos-matriculados">
-                @foreach(var curso in Model.CursosMatriculados)
-                {
-                    <div>
-                        <p>@curso</p>
-                    </div>
-                }
+            <div class="div-botao-cursos-lecionados">
+                <a asp-controller="Usuario" asp-action="Matriculados" class="btn btn-outline-success btn-lg bot-criar-curso">Cursos</a>
             </div>
         }
     }
