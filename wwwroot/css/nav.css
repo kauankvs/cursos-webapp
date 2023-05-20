@@ -35,11 +35,17 @@
 
 .link-nav:link {
     text-decoration: none;
-    color: dimgrey;
+    color: lightgray;
 }
 
-.link-nav:visited, .link-nav:active {
+.link-nav:visited {
     text-decoration: none;
+    color: lightgray;
+}
+
+.link-nav:active {
+    text-decoration: none;
+    color: lightgray;
 }
 
 .link-nav:hover {
@@ -95,6 +101,4 @@
     .categorias-texto:active .categorias-texto:link {
         text-decoration: none;
     }
-
-
 
